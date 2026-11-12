@@ -1,6 +1,6 @@
 {
-  "name": "lifeos-knowledge-en",
-  "version": "0.1.0",
+  "name": "lifeos-knowledge",
+  "version": "0.1.1",
   "description": "Build a local knowledge base, track verified reuse, and review workflows for Skills.",
   "skills": "./skills/",
   "interface": {

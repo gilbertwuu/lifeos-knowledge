@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "lifeos-knowledge-en",
-  "version": "0.1.0",
+  "name": "lifeos-knowledge",
+  "version": "0.1.1",
   "description": "Build a local knowledge base, track verified reuse, and review workflows for Skills.",
   "extensions": {
     "com.openai": {
