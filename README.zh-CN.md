@@ -11,7 +11,7 @@ flowchart TD
     A["日常积累 · 对话、资料、项目实践"] --> B["筛选、去重、整理"]
     B --> C["本地 Markdown 知识库"]
     C --> D["在 Obsidian 阅读正文、链接与反向链接"]
-    C --> E["新任务 · AGENTS.md 引导 Codex 查索引和笔记"]
+    C --> E["新任务 · 协作规则引导 Agent 查索引和笔记"]
     E --> F["将知识用到任务中，留下读取记录"]
     F --> G["每日复盘 · 核对读取、更新索引与台账"]
     G --> H["每周复盘 · 从独立任务中找重复方法"]
@@ -23,13 +23,13 @@ flowchart TD
 
 ### 1. 从日常积累到本地知识库
 
-把对话、资料和项目实践中的收获交给 Codex。你可以随手请它保存，也可以设置「每日知识沉淀」，让 AI 在你授权的范围内回看当天新增的对话内容。AI 先判断内容将来能不能帮助判断、创作或解决问题，再查索引和相关正文，优先给已有笔记补充新证据。原始材料、还在思考的问题、已经可以复用的方法分别存入 Sources、Notes 和 Wiki，并通过 `INDEX.md` 找到入口。
+把对话、资料和项目实践中的收获交给你的 Agent。你可以随手请它保存，也可以设置「每日知识沉淀」，让 AI 在你授权的范围内回看当天新增的对话内容。AI 先判断内容将来能不能帮助判断、创作或解决问题，再查索引和相关正文，优先给已有笔记补充新证据。原始材料、还在思考的问题、已经可以复用的方法分别存入 Sources、Notes 和 Wiki，并通过 `INDEX.md` 找到入口。
 
 笔记是本地 Markdown 文件。用 Obsidian 打开同一个文件夹，就能阅读正文、沿链接找到相关笔记，也能从反向链接查看还有哪些笔记引用了它。
 
 ### 2. 从知识库到真实任务
 
-在 Codex 全局或项目的 `AGENTS.md` 加入调用规则，填上知识库路径。新任务开始时，Codex 先判断库里的背景、方法或经验能不能帮上忙。有相关内容时，它先看 `INDEX.md`，再读笔记正文，必要时追溯来源。比如分析用户反馈时，AI 可以用库里的方法把已观察的现象、可能的解释和下一步核对分开，再结合当前证据给出判断。 [可复制的接入规则](plugins/lifeos-knowledge/skills/lifeos-knowledge-base/assets/vault/SETUP.md)
+把查库规则写进你所用 Agent 的长期指令。工具会读取 `AGENTS.md` 时，可以写在这个文件里。也可以用该工具提供的项目指令或全局指令。新任务开始时，Agent 先判断库里的背景、方法或经验能不能帮上忙。有相关内容时，它先看 `INDEX.md`，再读笔记正文，必要时追溯来源。比如分析用户反馈时，AI 可以用库里的方法把已观察的现象、可能的解释和下一步核对分开，再结合当前证据给出判断。
 
 ### 3. 从使用记录到可复用的 Skill
 
@@ -45,19 +45,18 @@ flowchart TD
 | 知识复用统计 | 核对读取证据、预览并更新索引与台账 |
 | Skill 沉淀周回顾 | 比较真实任务和现有 Skill，形成供你决定的建议 |
 
-三份定时任务指南分别是 [每日知识沉淀](plugins/lifeos-knowledge/guides/01-daily-knowledge-capture.md)、[每日复用统计](plugins/lifeos-knowledge/guides/02-daily-reuse-statistics.md)和[每周 Skill 回顾](plugins/lifeos-knowledge/guides/03-weekly-skill-review.md)。你可以先手动跑一轮，再按自己的时区、资料范围和库路径配置定时任务。当前自动统计覆盖选定 Codex 本地 JSONL 记录中能匹配到笔记正文的显式单文件 `cat` 读取。
+三份定时任务指南分别是[每日知识沉淀](plugins/lifeos-knowledge/guides/01-daily-knowledge-capture.md)、[每日复用统计](plugins/lifeos-knowledge/guides/02-daily-reuse-statistics.md)和[每周 Skill 回顾](plugins/lifeos-knowledge/guides/03-weekly-skill-review.md)。里面的任务说明可以直接手动使用，也可以按你所用工具的定时方式和资料权限调整。
 
-## 安装到 Codex
+## 用你的 Agent 开始
 
-需要 Codex CLI。建库和复用统计需要 Python 3.11 或更新版本。
+1. **准备知识库。** 把 [Markdown 知识库模板](plugins/lifeos-knowledge/skills/lifeos-knowledge-base/assets/vault)的内容复制到你选定的本地文件夹，并让 Agent 能访问它。
+2. **接入日常任务。** 把下面的规则加到 Agent 的协作指令，填入库路径。如果工具只能读取上传的文件，就在任务里提供相关文件，更新后自行保存回本地库。
+3. **试跑一次。** 先保存一条带来源的笔记，再开一个新任务，看看 Agent 是否主动找到并用上它。复用记录可以先手工记下日期、任务、笔记路径和实际用途。每周对照任务产出回顾这些记录，再判断哪些做法值得做成 Skill。
 
-```sh
-codex plugin marketplace add gilbertwuu/lifeos-knowledge@v0.1.1
-codex plugin add lifeos-knowledge@lifeos-knowledge
+```text
+我的知识库位于 <知识库的绝对路径>。
+开始任务前，先判断知识库有没有相关背景或方法。有明确用途时，先读 INDEX.md，再读相关笔记正文。把适用内容用到任务里，简短说明用到了什么。找不到适用笔记时继续做任务。
+当我要求保存知识时，按 MEMORY.md 的规则整理，并更新 INDEX.md。
 ```
 
-安装后在 Codex 桌面端打开 **LifeOS Knowledge** 并新开对话。可以先说「在我指定的空文件夹里初始化一个 LifeOS 知识库」，接着试着保存一条笔记，再从另一个任务验证主动调用。
-
-[下载 ZIP](https://github.com/gilbertwuu/lifeos-knowledge/releases/download/v0.1.1/lifeos-knowledge-0.1.1.zip)后也可从本地安装。解压后，将第一条命令中的 GitHub 地址替换为解压目录路径。
-
-如果之前添加过 GitHub 上的 0.1.0 试用版，先运行 `codex plugin marketplace remove lifeos-knowledge`，再执行上面的安装命令。你的 Markdown 知识库仍在原来选定的文件夹。
+插件安装、定时触发和自动统计取决于工具提供的能力与记录格式。已验证的安装方式和手动跑法见[兼容性说明](docs/compatibility.zh-CN.md)。
