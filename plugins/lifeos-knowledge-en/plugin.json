@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lifeos-knowledge-en",
+  "version": "0.1.0",
+  "description": "Build a local knowledge base, track verified reuse, and review workflows for Skills.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "LifeOS Knowledge",
+        "shortDescription": "Capture knowledge and turn repeated work into Skills",
+        "longDescription": "Capture and reference notes in your Markdown vault, verify reuse against Codex records, and propose Skill improvements based on actual tasks.",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ],
+        "defaultPrompt": [
+          "Initialize a LifeOS vault in a folder I choose",
+          "Review knowledge reuse for a date I select",
+          "Review Skill opportunities for a week I select"
+        ]
+      }
+    }
+  }
+}

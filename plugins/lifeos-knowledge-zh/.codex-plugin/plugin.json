@@ -1,0 +1,21 @@
+{
+  "name": "lifeos-knowledge-zh",
+  "version": "0.1.0",
+  "description": "本地知识库搭建、知识复用统计和 Skill 沉淀周回顾。",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LifeOS 知识管理（中文）",
+    "shortDescription": "整理知识、核对复用、沉淀 Skill",
+    "longDescription": "在自己的 Markdown 知识库中保存与调用知识，核对读取证据，并从真实案例形成 Skill 改进建议。附 Obsidian 示例和三份定时任务配置指南。",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 LifeOS 在我选择的文件夹初始化知识库",
+      "用 LifeOS 核对指定日期的知识复用",
+      "用 LifeOS 回顾指定周的 Skill 改进机会"
+    ]
+  }
+}
