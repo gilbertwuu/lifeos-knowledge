@@ -59,3 +59,5 @@ codex plugin add lifeos-knowledge@lifeos-knowledge
 安装后在 Codex 桌面端打开 **LifeOS Knowledge** 并新开对话。可以先说「在我指定的空文件夹里初始化一个 LifeOS 知识库」，接着试着保存一条笔记，再从另一个任务验证主动调用。
 
 [下载 ZIP](https://github.com/gilbertwuu/lifeos-knowledge/releases/download/v0.1.1/lifeos-knowledge-0.1.1.zip)后也可从本地安装。解压后，将第一条命令中的 GitHub 地址替换为解压目录路径。
+
+如果之前添加过 GitHub 上的 0.1.0 试用版，先运行 `codex plugin marketplace remove lifeos-knowledge`，再执行上面的安装命令。你的 Markdown 知识库仍在原来选定的文件夹。

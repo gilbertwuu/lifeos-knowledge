@@ -59,3 +59,5 @@ codex plugin add lifeos-knowledge@lifeos-knowledge
 Open **LifeOS Knowledge** in Codex Desktop and start a new chat. Ask it to initialize a LifeOS vault in an empty folder you choose. Save one note, then start a separate task to check whether Codex finds and uses it.
 
 You can also [download the ZIP](https://github.com/gilbertwuu/lifeos-knowledge/releases/download/v0.1.1/lifeos-knowledge-0.1.1.zip). Unzip it and pass the extracted folder to the first command in place of the GitHub address.
+
+If you added the 0.1.0 GitHub preview, run `codex plugin marketplace remove lifeos-knowledge` before running the installation commands above. Your Markdown vault stays in the folder you chose.
