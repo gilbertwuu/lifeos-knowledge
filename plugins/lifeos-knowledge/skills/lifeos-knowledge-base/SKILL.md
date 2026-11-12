@@ -9,7 +9,7 @@ Identify the vault from the user's chosen path, current vault, or active project
 
 ## Initialize
 
-Run this Skill's `scripts/init_vault.py` with Python 3.11+ and the user's chosen destination. The script fills in missing files from `assets/vault/` and keeps existing files. Check `AGENTS.md`, `MEMORY.md`, `INDEX.md`, and the example. Return the vault path, the [setup guide](assets/vault/SETUP.md), and the copyable instruction for the active global or project `AGENTS.md`. For an existing vault with an older guide, use this Skill's current copy. If the user requests setup in a named instruction file, read it and append the smallest applicable change.
+Copy the contents of `assets/vault/` into the chosen destination, filling only missing files. If Python 3.11+ and script execution are available, `scripts/init_vault.py` can perform that copy. Check `AGENTS.md`, `MEMORY.md`, `INDEX.md`, and the example. Return the vault path, the [setup guide](assets/vault/SETUP.md), and the copyable instruction for the active global or project instruction file. For an existing vault with an older guide, use this Skill's current copy. If the user requests setup in a named instruction file, read it and append the smallest applicable change.
 
 ## Capture
 
@@ -19,10 +19,10 @@ Run this Skill's `scripts/init_vault.py` with Python 3.11+ and the user's chosen
 4. Record the claim, source, applicable conditions, and relevant links. Save confirmed preferences within the user's scope.
 5. Verify the note, sources, index, and any attachments. Report what changed and what remains unresolved.
 
-See `guides/01-daily-knowledge-capture.md` in the plugin root for scheduling. Images are optional. Embed only an image that exists.
+See [daily capture](references/daily-capture.md) for manual and scheduled runs. Images are optional. Embed only an image that exists.
 
 ## Use
 
 Search `INDEX.md` for directly relevant notes, read the body, and trace important claims to their sources when needed. Apply what fits the current task and keep checking current facts. If nothing fits, proceed with the task. Read collaboration preferences only when relevant.
 
-If reuse tracking is configured, an explicit single-file `cat` read of the note used in the task produces evidence the first collector can recognize. Exclude any reads replayed for the audit itself.
+When reuse tracking is requested, provide the date, task identifier or link, vault-relative note path, and how the note contributed. Include the original read identifier or evidence location when available. A note found in the index is a lead. Confirm its body was read and used before reporting reuse.

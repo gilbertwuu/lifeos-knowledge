@@ -1,16 +1,16 @@
 ---
 name: lifeos-skill-review
-description: 'Review verified Wiki reuse and actual tasks for a selected week. Propose which repeated methods to package as a Skill, add to an existing Skill, or keep as knowledge.'
+description: 'Review verified knowledge reuse across real tasks. Use to find recurring methods and decide whether to create, improve, or keep a procedure as a Skill or a Wiki note.'
 ---
 
 # Review Skill candidates
 
-Confirm the chosen vault, time zone, week, and available Skills. Use the reuse Skill's `scripts/reuse.py week` to get weekly evidence. See `guides/03-weekly-skill-review.md` in the plugin root.
+Confirm the vault, time zone, review week, evidence sources, and existing Skills available to inspect. Use [weekly review](references/weekly-review.md) for input formats and a manual or scheduled prompt. This Skill can work from the Markdown ledger or from a supplied export of an automated audit.
 
-1. Check the week, completed daily audits, cutoff time, and gaps.
-2. Use the ledger to locate actual tasks, returned note bodies, visible outputs, and feedback. Multiple reads in one task count as one task case. Verify whether independent tasks actually applied the same method.
-3. Identify recurring inputs, steps, outputs, and acceptance checks. Read the relevant existing Skills to check coverage. Exclude personal collaboration preferences from workflow candidates by default.
-4. Propose a targeted improvement, a combination of existing Skills, a new trial Skill, a workflow step, or retaining the Wiki. Say what evidence is missing when no candidate is ready.
-5. Deliver a weekly report with note links, reads, independent tasks, current coverage, proposed changes, acceptance checks, and decisions pending. Revise previous suggestions when new evidence changes them.
+1. Check the dates covered by daily audits and the cutoff. Report missing days as coverage gaps.
+2. Use verified reads to locate tasks, note bodies, visible outputs, and feedback. Group multiple reads in the same task as one case. Check whether independent tasks actually used the same method.
+3. Identify recurring inputs, steps, outputs, and acceptance checks. Inspect the relevant existing Skills to check coverage. Leave personal preferences out of workflow candidates unless requested.
+4. Propose a targeted change, a new trial Skill, or keeping the method as knowledge. If evidence is thin or already covered, give the reason and name the next useful evidence.
+5. Report note links, reads, independent cases, repeated steps, current coverage, proposed changes, acceptance checks, and decisions pending. If write access is unavailable, return the report as text.
 
-The scheduled review writes its report. Apply a selected change after the user asks to proceed.
+A scheduled review delivers a report. Apply a chosen change when the user asks to proceed.

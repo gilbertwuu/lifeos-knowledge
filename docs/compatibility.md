@@ -1,24 +1,30 @@
-# Compatibility
+# Install and configure LifeOS
 
 [简体中文](compatibility.zh-CN.md) · [LifeOS workflow](../README.md)
 
-The vault is a folder of Markdown files. An Agent that can access it and follow persistent instructions can use the capture and lookup workflow. Give the Agent write access if you want it to update the vault. If you use a chat tool with uploads, attach the relevant notes for each task and apply updates yourself.
+## Use the same download in your Agent
 
-## Scheduling, reuse, and Skills
+1. Extract the [LifeOS ZIP](https://github.com/gilbertwuu/lifeos-knowledge/releases/download/v0.2.0/lifeos-knowledge-0.2.0.zip). Under [plugins/lifeos-knowledge/skills](../plugins/lifeos-knowledge/skills), each Skill is an independent directory following the [Agent Skills format](https://agentskills.io/specification). Keep the directory name and all of its files together.
+2. Copy the three folders to the location your Agent scans, or import each folder using its Skill manager. For example, a project can use `.agents/skills/` if the tool scans that location. Claude Code supports `.claude/skills/` in a project. When an importer requires a per-Skill ZIP, compress the corresponding Skill folder from the same download. If the tool has no Skill loader, use its `SKILL.md` and linked resources as task instructions. [Claude Code project Skills](https://code.claude.com/docs/en/skills)
+3. Start a new session and invoke `lifeos-knowledge-base` to initialize a test vault. Follow its [setup rule](../plugins/lifeos-knowledge/skills/lifeos-knowledge-base/assets/vault/SETUP.md) using your Agent's persistent instruction settings. Give the Agent read access to the vault and write access for changes it should save. With an upload-only tool, attach the relevant files and save returned changes yourself.
 
-- Use the scheduling prompts with your Agent's scheduler if it supports the required file access and write scope. You can also run them manually.
-- Keep a manual reuse record when the tool's traces are unavailable or use a different format. Record the date, task, note path, and how the note was used. Use those records and the actual outputs for a weekly review. The bundled collector specifically recognizes matching single-file `cat` reads in selected local Codex JSONL records.
-- An Agent with Skill support can use the procedures through its own Skill mechanism. You can also supply the relevant procedure as task instructions. Check your tool's packaging and instruction format before installing or adapting it.
+## Configure scheduling and evidence
 
-## Verified plugin installation
+| Workflow | Inputs and output | Run options |
+| --- | --- | --- |
+| [Daily capture](../plugins/lifeos-knowledge/skills/lifeos-knowledge-base/references/daily-capture.md) | Selected messages or exports → notes, index and checkpoint | Schedule with file and history access, or supply the material when running manually. |
+| [Daily reuse](../plugins/lifeos-knowledge/skills/lifeos-wiki-reuse/references/daily-reuse.md) | Actual read and use evidence → daily Markdown ledger or reviewed collector output | A scheduled Agent can review accessible evidence. If logs are unavailable, provide original excerpts or track reuse as you work. |
+| [Weekly review](../plugins/lifeos-knowledge/skills/lifeos-skill-review/references/weekly-review.md) | Daily ledgers or a collector export, tasks and existing Skills → proposal report | Run after the daily audits. Approve actual Skill changes separately. |
 
-The current English plugin package has been verified in Codex. The vault initializer and reuse scripts require Python 3.11 or later.
+Set the IANA time zone, source scope, vault path and output paths in each prompt. Verify one manual run before adding the same prompt to your tool's scheduler. Then check the first real trigger and whether the scheduled environment can reach the same files. Installing the Skills creates no schedules.
+
+The Markdown ledger works without scripts. The optional collector needs Python 3.11+ on a POSIX system and selected local Codex JSONL records. It detects explicit single-file `cat` reads with matching note content. A reviewer confirms use before counts are written.
+
+## Optional Codex marketplace installation
 
 ```sh
-codex plugin marketplace add gilbertwuu/lifeos-knowledge@v0.1.1
+codex plugin marketplace add gilbertwuu/lifeos-knowledge@v0.2.0
 codex plugin add lifeos-knowledge@lifeos-knowledge
 ```
 
-Open **LifeOS Knowledge** in Codex Desktop and start a new chat. For a local install, [download the ZIP](https://github.com/gilbertwuu/lifeos-knowledge/releases/download/v0.1.1/lifeos-knowledge-0.1.1.zip), extract it, and pass the extracted folder to the first command in place of the GitHub address.
-
-If you added the 0.1.0 GitHub preview, run `codex plugin marketplace remove lifeos-knowledge` before the installation commands above. Your vault stays in the folder you chose.
+For a local install, pass the extracted folder to the first command instead of the GitHub address. If an earlier GitHub release is already registered, first run `codex plugin marketplace remove lifeos-knowledge`. This removes the marketplace registration. Your vault stays in the folder you chose.
